@@ -10,7 +10,8 @@ export default class MainView extends ui.scene.MianViewUI
 
    onEnable()
    {
-
+       //加载3D资源
+          Laya.loader.create("")
    }
 
    onDisable()
