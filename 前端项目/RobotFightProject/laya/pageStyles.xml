@@ -1,4 +1,4 @@
 <page>
-   <item name="scene/MianView.scene" props="" ifExport="分离模式" aName=""/>
-   <item name="scene/ChooseLevel.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="view/MianView.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="view/ChooseLevel.scene" props="" ifExport="分离模式" aName=""/>
 </page>

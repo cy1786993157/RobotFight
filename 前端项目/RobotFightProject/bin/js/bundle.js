@@ -1,20 +1,63 @@
 (function () {
     'use strict';
 
+    var Scene = Laya.Scene;
+    var REG = Laya.ClassUtils.regClass;
+    var ui;
+    (function (ui) {
+        var view;
+        (function (view) {
+            class ChooseLevelUI extends Scene {
+                constructor() { super(); }
+                createChildren() {
+                    super.createChildren();
+                    this.loadScene("view/ChooseLevel");
+                }
+            }
+            view.ChooseLevelUI = ChooseLevelUI;
+            REG("ui.view.ChooseLevelUI", ChooseLevelUI);
+            class MianViewUI extends Scene {
+                constructor() { super(); }
+                createChildren() {
+                    super.createChildren();
+                    this.loadScene("view/MianView");
+                }
+            }
+            view.MianViewUI = MianViewUI;
+            REG("ui.view.MianViewUI", MianViewUI);
+        })(view = ui.view || (ui.view = {}));
+    })(ui || (ui = {}));
+
+    class MainView extends ui.view.MianViewUI {
+        constructor() {
+            super();
+        }
+        onEnable() {
+            Laya.loader.create("scene/Conventional/scene_0.ls", Laya.Handler.create(this, this.onPress), null);
+        }
+        onPress() {
+            this.scene3D = Laya.loader.getRes("scene/Conventional/scene_0.ls");
+            this.addChild(this.scene3D);
+        }
+        onDisable() {
+        }
+    }
+
     class GameConfig {
         constructor() {
         }
         static init() {
             var reg = Laya.ClassUtils.regClass;
+            reg("script/MianView.ts", MainView);
         }
     }
-    GameConfig.width = 640;
-    GameConfig.height = 1136;
+    GameConfig.width = 1280;
+    GameConfig.height = 720;
     GameConfig.scaleMode = "fixedwidth";
-    GameConfig.screenMode = "none";
+    GameConfig.screenMode = "horizontal";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "scene/MianView.scene";
+    GameConfig.startScene = "view/MianView.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -54,3 +97,4 @@
     new Main();
 
 }());
+//# sourceMappingURL=bundle.js.map

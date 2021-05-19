@@ -3,14 +3,22 @@ import View=Laya.View;
 import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
-export module ui.scene {
+export module ui.view {
+    export class ChooseLevelUI extends Scene {
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("view/ChooseLevel");
+        }
+    }
+    REG("ui.view.ChooseLevelUI",ChooseLevelUI);
     export class MianViewUI extends Scene {
 		public btn_gameStar:Laya.Image;
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
-            this.loadScene("scene/MianView");
+            this.loadScene("view/MianView");
         }
     }
-    REG("ui.scene.MianViewUI",MianViewUI);
+    REG("ui.view.MianViewUI",MianViewUI);
 }
